@@ -178,10 +178,6 @@ void loop() {
   }
 }
 
-/*
- * Start by making a secure tcp connection with the server running the mqtt broker.
- * If that worked, start the mqtt client.
- */
 void reconnect() {
   // Attempt to connect to the mqtt broker
   if (pubsubClient.connect(client_id, mqtt_user, mqtt_password)) {
