@@ -79,6 +79,24 @@ wifiClient` into `WiFiClient wifiClient` and remove the
 `wifiClient.setFingerprint(fingerprint)` call in the function
 `setup()`. Also change the `MQTT_PORT` to `1883` instead of `8883`.
 
+### Home Assistant ###
+
+If the mosquitto mqtt broker
+[add-on](https://github.com/home-assistant/hassio-addons/blob/master/mosquitto/DOCS.md)
+is used on Home Assistant, put the crt and key files in the ssl
+directory. Change the mosquitto configuration to:
+
+```
+logins: []
+anonymous: false
+customize:
+  active: false
+  folder: mosquitto
+certfile: <server>.crt
+keyfile: <server>.key
+require_certificate: false
+```
+
 ## Links ##
 
  * [Adafruit HUZZAH ESP8266](https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/overview)
