@@ -109,4 +109,4 @@ require_certificate: false
 * [The BearSSL WiFi Classes](https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/bearssl-client-secure-class.html)
 * [bearssl-esp8266 on github](https://github.com/earlephilhower/bearssl-esp8266)
 * [Examples of using WiFiClientSecure](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi/examples)
- 
+* [Home Assistant Add-on: Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto)
