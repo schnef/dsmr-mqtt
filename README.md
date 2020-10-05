@@ -58,7 +58,9 @@ server's certificate fingerprint (`MQTT_SERVER` and `MQTT_FP`).
 According to the
 [documentation](https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/bearssl-client-secure-class.html#cpu-requirements),
 one should run the ESP8266 at 160 MHz. Switch the CPU frequency from
-the default 80 MHz to 160 MHz from the Tools menu in the Arduino IDE.
+the default 80 MHz to 160 MHz from the Tools menu in the Arduino
+IDE. However, everything works just fine with 80 MHz which should make
+the board consume less power.
 
 To verify the connection, the fingerprint of the server's certificate
 is used as described
