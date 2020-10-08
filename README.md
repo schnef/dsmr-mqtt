@@ -31,13 +31,60 @@ a lookup table and another one which processes the message
 bit-by-bit. The one using the lookup table might be faster at the cost
 of more memory being used, but this was not tested.
 
+Over-the-air (OTA) programming is also implemented.
+
 The [PubSubClient](https://pubsubclient.knolleary.net/) Arduino Client
 for MQTT is used. It is assumed a user name and password are required
 to connect to the broker or remove the credentials from the
-`pubsubClient.connect()` call otherwise. The topic used for publishing
-the telegrams is `dsmr`.
+`pubsubClient.connect()` call otherwise. In the `dsmr-mqtt-basic.ino`
+sketch, the telegram is published using topic `dsmr`.
 
-Over-the-air (OTA) programming is also implemented.
+### Parsing ###
+
+In sketch `dsmr-mqtt.ino` the telegram is parsed using the
+[`arduino-dsmr`
+parser](https://github.com/matthijskooijman/arduino-dsmr) and the
+parsed fields are published using seperate topics. To change which
+fields to parse, change the code reading:
+
+```
+using DSMRData = ParsedData<
+//  /* String */ identification,
+  ...
+  /* FixedValue */ energy_delivered_tariff1,
+  /* FixedValue */ energy_delivered_tariff2,
+ ...
+  /* String */ electricity_tariff,
+  /* FixedValue */ power_delivered,
+  ...
+  /* uint32_t */ electricity_failures,
+  /* uint32_t */ electricity_long_failures,
+  ...
+>;
+```
+
+Uncomment the fields you want to use or vice versa and add / remove
+the call to publish the fields in function `void publish(DSMRData
+data)`.
+
+```
+void publish(DSMRData data) {
+
+  char buf[128];
+  
+  /* FixedValue */
+  pubsubClient.publish("dsmr/energy_delivered_tariff1", itoa(data.energy_delivered_tariff1.int_val(), buf, 10));
+  ...
+  /* String */
+  pubsubClient.publish("dsmr/electricity_tariff", data.electricity_tariff.c_str());
+  ...
+  /* uint32_t */
+  pubsubClient.publish("dsmr/electricity_failures", itoa(data.electricity_failures, buf, 10));
+  ...
+}
+```
+The [`arduino-dsmr` parser](https://github.com/matthijskooijman/arduino-dsmr) takes care of reading from the P1 port and checking CRCs. The trick 
+here is again to invert the UART's Rx input during setup.
 
 ## Configuration ##
 
@@ -112,3 +159,4 @@ require_certificate: false
 * [bearssl-esp8266 on github](https://github.com/earlephilhower/bearssl-esp8266)
 * [Examples of using WiFiClientSecure](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi/examples)
 * [Home Assistant Add-on: Mosquitto broker](https://github.com/home-assistant/hassio-addons/tree/master/mosquitto)
+* [`arduino-dsmr` parser](https://github.com/matthijskooijman/arduino-dsmr)
