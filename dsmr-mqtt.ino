@@ -217,8 +217,6 @@ void loop() {
       digitalWrite(LED_BLUE, ON);
       if (reader.parse(&data, &err)) {
         publish(data);
-	      // Parse succesful
-        //pubsubClient.publish(dsmr_topic, "TICK");
       }
       digitalWrite(LED_BLUE, OFF);
     }
