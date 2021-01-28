@@ -22,7 +22,9 @@ Data (pin #5), GND to Data GND (pin #3) and GPIO 04 connected to Data
 Request (pin #2). One can simply use an old fully wired (all four
 connections) RJ11 telephone wire for this.
 
-![]("RJ11 pinout P1 poort kabel.png")
+<img src="RJ11 pinout P1 poort kabel.png"
+     alt="Markdown Monster iRJ11 pinout P1 poort kabel"
+     style="float: left; margin-right: 10px;" />
 
 GPIO pin 4 is used to
 enable/disable sending by the P1 port by taking the Data Request line
