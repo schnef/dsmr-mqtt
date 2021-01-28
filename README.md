@@ -26,6 +26,14 @@ connections) RJ11 telephone wire for this.
      alt="Markdown Monster iRJ11 pinout P1 poort kabel"
      style="float: left; margin-right: 10px;" />
 
+1. Not connected
+2. black -> #4 (Request, P1_DATA_REQ)
+3. Red -> GND (Data GND)
+4. Green -> Not connected
+5. Yellow -> RX (Data)
+6. Not connected
+
+
 GPIO pin 4 is used to
 enable/disable sending by the P1 port by taking the Data Request line
 HIGH/LOW.  The Sagemcom T210-D uses protocol DSMR P1 version 5.0. With
