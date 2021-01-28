@@ -20,7 +20,11 @@ powered using an old mobile phone charger, connected to a Sagemcom
 T210-D metering device with the UART RX pin connected to the P1's
 Data (pin #5), GND to Data GND (pin #3) and GPIO 04 connected to Data
 Request (pin #2). One can simply use an old fully wired (all four
-connections) RJ11 telephone wire for this. GPIO pin 4 is used to
+connections) RJ11 telephone wire for this.
+
+![](RJ11 pinout P1 poort kabel.png)
+
+GPIO pin 4 is used to
 enable/disable sending by the P1 port by taking the Data Request line
 HIGH/LOW.  The Sagemcom T210-D uses protocol DSMR P1 version 5.0. With
 a properly wired RJ12 connector, one probably can even power the board
